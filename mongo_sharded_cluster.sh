@@ -13,7 +13,6 @@ function finish {
 }
 trap finish EXIT
 
-
 mkdir -p ~/mongosvr/config-0
 
 mongod --configsvr --dbpath ~/mongosvr/config-0 --port 27019 \
@@ -24,7 +23,6 @@ sleep 3
 mongos --configdb localhost:27019 | sed "s/.*/$green&$default/" &
 
 sleep 3
-
 
 mongo --eval "JSON.stringify(sh._adminCommand( { addShard : 'set/localhost:27091' } , true ))"
 
